@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Online Safety Guard</title>
+  <link rel="stylesheet" href="/outlook/taskpane.css" />
+  <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+</head>
+<body>
+  <main id="app" class="sgp">
+    <header class="sgp-head">
+      <h1>Online Safety Guard</h1>
+      <p id="subStatus" class="sgp-sub">Starting&hellip;</p>
+    </header>
+
+    <!-- Key setup (shown until a key is saved) -->
+    <section id="keyPanel" class="sgp-card" hidden>
+      <h2>Connect to your safety server</h2>
+      <p class="sgp-muted">
+        Paste the add-in key you set as <code>OUTLOOK_ADDIN_KEY</code>. It is stored
+        only in your Outlook roaming settings and never logged.
+      </p>
+      <label class="sgp-label" for="keyInput">Add-in key</label>
+      <input id="keyInput" class="sgp-input" type="password" autocomplete="off" spellcheck="false" />
+      <div class="sgp-row">
+        <button id="saveKey" class="sgp-btn" type="button">Save key</button>
+        <button id="forgetKey" class="sgp-link" type="button">Forget key</button>
+      </div>
+      <p id="keyStatus" class="sgp-muted" role="status"></p>
+    </section>
+
+    <!-- Verdict -->
+    <section id="resultPanel" class="sgp-card" hidden>
+      <div id="verdictBadge" class="sgp-badge">Checking&hellip;</div>
+      <p id="verdictText" class="sgp-verdict"></p>
+      <p id="reasonText" class="sgp-muted"></p>
+
+      <h2 class="sgp-h2">Links in this email <span id="linkCount" class="sgp-count"></span></h2>
+      <ul id="linkList" class="sgp-links"></ul>
+      <p id="noLinks" class="sgp-muted" hidden>No http/https links found in this email.</p>
+
+      <div class="sgp-row">
+        <button id="openCheck" class="sgp-btn" type="button">Open safety check page</button>
+        <button id="retry" class="sgp-btn sgp-ghost" type="button">Retry</button>
+      </div>
+      <p id="metaText" class="sgp-meta"></p>
+    </section>
+
+    <!-- Message content risk (separate from the link check above) -->
+    <section id="msgRiskPanel" class="sgp-card" hidden>
+      <h2 class="sgp-h2" style="margin-top:0">Message content risk</h2>
+      <div class="sgp-row" style="margin-top:0">
+        <div id="msgRiskBadge" class="sgp-badge">&hellip;</div>
+        <span id="msgRiskScore" class="sgp-count"></span>
+      </div>
+      <p id="msgScamType" class="sgp-verdict"></p>
+      <p id="msgSummary" class="sgp-muted"></p>
+      <ul id="msgFlags" class="sgp-flags"></ul>
+    </section>
+
+    <section id="failPanel" class="sgp-card" hidden>
+      <div class="sgp-badge sgp-amber">Check failed</div>
+      <p><strong>Check failed &mdash; treat links with care.</strong></p>
+      <p id="failDetail" class="sgp-muted"></p>
+      <div class="sgp-row">
+        <button id="retryFail" class="sgp-btn" type="button">Retry</button>
+      </div>
+    </section>
+
+    <footer class="sgp-foot">
+      <button id="forgetKeyFoot" class="sgp-link" type="button" hidden>Forget key</button>
+    </footer>
+  </main>
+  <script src="/outlook/taskpane.js"></script>
+</body>
+</html>

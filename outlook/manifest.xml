@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+  Online Safety Guard - Outlook add-in manifest (XML).
+
+  Adds an "Analyze with Online Safety Guard" button to the message-read ribbon
+  that opens /outlook/taskpane.html. The pane reads the open email with Office.js
+  and sends its links to the existing /api/inspect + /api/events endpoints, then
+  shows the verdict and reports the event to the /admin/mail dashboard.
+
+  Every URL below is under https://safety-guard-web-ncra.onrender.com/outlook/.
+  The served task pane files live in the repo's outlook/ directory and are
+  served with add-in-only headers; this manifest file itself is NOT served.
+-->
+<OfficeApp
+  xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+  xmlns:mailappor="http://schemas.microsoft.com/office/mailappversion/1.1"
+  xsi:type="MailApp">
+
+  <Id>7d4c5e21-8a93-4b17-9c62-51f3e7a82d14</Id>
+
+  <Version>1.0.0.0</Version>
+
+  <ProviderName>Online Safety Guard</ProviderName>
+
+  <DefaultLocale>en-US</DefaultLocale>
+
+  <DisplayName DefaultValue="Online Safety Guard"/>
+
+  <Description DefaultValue="AI-powered email safety analysis using agentic investigation."/>
+
+  <IconUrl DefaultValue="https://safety-guard-web-ncra.onrender.com/outlook/icon-64.png"/>
+
+  <HighResolutionIconUrl DefaultValue="https://safety-guard-web-ncra.onrender.com/outlook/icon-128.png"/>
+
+  <SupportUrl DefaultValue="https://safety-guard-web-ncra.onrender.com/outlook/support.html"/>
+
+  <AppDomains>
+    <AppDomain>https://safety-guard-web-ncra.onrender.com</AppDomain>
+  </AppDomains>
+
+  <Hosts>
+    <Host Name="Mailbox"/>
+  </Hosts>
+
+  <Requirements>
+    <Sets>
+      <Set Name="Mailbox" MinVersion="1.5"/>
+    </Sets>
+  </Requirements>
+
+  <FormSettings>
+    <Form xsi:type="ItemRead">
+      <DesktopSettings>
+        <SourceLocation DefaultValue="https://safety-guard-web-ncra.onrender.com/outlook/taskpane.html"/>
+        <RequestedHeight>450</RequestedHeight>
+      </DesktopSettings>
+    </Form>
+  </FormSettings>
+
+  <Permissions>ReadItem</Permissions>
+
+  <Rule xsi:type="RuleCollection" Mode="And">
+    <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read"/>
+  </Rule>
+
+  <DisableEntityHighlighting>false</DisableEntityHighlighting>
+
+  <VersionOverrides
+  xmlns="http://schemas.microsoft.com/office/mailappversionoverrides"
+  xsi:type="VersionOverridesV1_0">
+
+    <Requirements>
+      <bt:Sets DefaultMinVersion="1.5">
+        <bt:Set Name="Mailbox"/>
+      </bt:Sets>
+    </Requirements>
+
+    <Hosts>
+      <Host xsi:type="MailHost">
+
+        <DesktopFormFactor>
+
+          <!-- Loaded once per session by the host; hosts /outlook/commands.html. -->
+          <FunctionFile resid="Commands.Url"/>
+
+          <ExtensionPoint xsi:type="MessageReadCommandSurface">
+
+            <OfficeTab id="TabDefault">
+
+              <Group id="OnlineSafetyGuardGroup">
+
+                <Label resid="GroupLabel"/>
+
+                <Control xsi:type="Button" id="AnalyzeEmailButton">
+
+                  <Label resid="AnalyzeLabel"/>
+
+                  <Supertip>
+                    <Title resid="AnalyzeLabel"/>
+                    <Description resid="AnalyzeDescription"/>
+                  </Supertip>
+
+                  <Icon>
+                    <bt:Image size="16" resid="Icon16"/>
+                    <bt:Image size="32" resid="Icon32"/>
+                    <bt:Image size="80" resid="Icon80"/>
+                  </Icon>
+
+                  <Action xsi:type="ShowTaskpane">
+                    <SourceLocation resid="Taskpane.Url"/>
+                  </Action>
+
+                </Control>
+
+              </Group>
+
+            </OfficeTab>
+
+          </ExtensionPoint>
+
+        </DesktopFormFactor>
+
+      </Host>
+    </Hosts>
+
+    <Resources>
+
+      <bt:Images>
+
+        <bt:Image
+          id="Icon16"
+          DefaultValue="https://safety-guard-web-ncra.onrender.com/outlook/icon-16.png"/>
+
+        <bt:Image
+          id="Icon32"
+          DefaultValue="https://safety-guard-web-ncra.onrender.com/outlook/icon-32.png"/>
+
+        <bt:Image
+          id="Icon80"
+          DefaultValue="https://safety-guard-web-ncra.onrender.com/outlook/icon-80.png"/>
+
+      </bt:Images>
+
+      <bt:Urls>
+
+        <bt:Url
+          id="Commands.Url"
+          DefaultValue="https://safety-guard-web-ncra.onrender.com/outlook/commands.html"/>
+
+        <bt:Url
+          id="Taskpane.Url"
+          DefaultValue="https://safety-guard-web-ncra.onrender.com/outlook/taskpane.html"/>
+
+      </bt:Urls>
+
+      <bt:ShortStrings>
+
+        <bt:String
+          id="GroupLabel"
+          DefaultValue="Online Safety Guard"/>
+
+        <bt:String
+          id="AnalyzeLabel"
+          DefaultValue="Analyze with Online Safety Guard"/>
+
+      </bt:ShortStrings>
+
+      <bt:LongStrings>
+
+        <bt:String
+          id="AnalyzeDescription"
+          DefaultValue="Analyze this email for phishing, scams, suspicious links, and social engineering threats."/>
+
+      </bt:LongStrings>
+
+    </Resources>
+
+  </VersionOverrides>
+
+</OfficeApp>

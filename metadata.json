@@ -1,0 +1,6 @@
+{
+  "name": "Online Safety Guard",
+  "description": "A lightweight scam detector and message safety guard that alerts users to phishing, fraud, and suspicious messages.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

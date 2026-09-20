@@ -1,0 +1,41 @@
+{
+  "timeZone": "Etc/UTC",
+  "dependencies": {},
+  "exceptionLogging": "STACKDRIVER",
+  "runtimeVersion": "V8",
+  "oauthScopes": [
+    "https://www.googleapis.com/auth/gmail.addons.execute",
+    "https://www.googleapis.com/auth/gmail.addons.current.message.readonly",
+    "https://www.googleapis.com/auth/script.external_request",
+    "https://www.googleapis.com/auth/userinfo.email"
+  ],
+  "addOns": {
+    "common": {
+      "name": "Online Safety Guard",
+      "logoUrl": "https://safety-guard-web-ncra.onrender.com/outlook/icon-128.png",
+      "layoutProperties": {
+        "primaryColor": "#0b3d2e",
+        "secondaryColor": "#8CFF9E"
+      },
+      "homepageTrigger": {
+        "runFunction": "onHomepage"
+      },
+      "universalActions": [
+        {
+          "label": "Safety Guard settings",
+          "runFunction": "onSettingsUniversalAction"
+        }
+      ]
+    },
+    "gmail": {
+      "contextualTriggers": [
+        {
+          "unconditional": {},
+          "onTriggerFunction": "onGmailMessageOpen"
+        }
+      ],
+      "primaryColor": "#0b3d2e",
+      "secondaryColor": "#8CFF9E"
+    }
+  }
+}

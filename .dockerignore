@@ -1,0 +1,12 @@
+node_modules
+dist
+/data
+.git
+tests
+api
+vercel.json
+dev-server.log
+dev-server.err.log
+*.log
+.env*
+!.env.example

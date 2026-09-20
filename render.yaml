@@ -1,0 +1,58 @@
+# Render Blueprint — provisions the Safety Guard web service + persistent disk.
+#
+# Usage: Render Dashboard -> New + -> Blueprint -> pick this repo.
+# Render creates the service, prompts for the secret values below, and attaches
+# a 1 GB persistent disk at /data (so the SQLite gateway data survives deploys).
+
+services:
+  - type: web
+    name: safety-guard
+    runtime: docker
+    # A persistent disk requires a paid instance (Free plans have no disks).
+    plan: 0.5c-512mb
+    region: singapore
+    branch: main
+    healthCheckPath: /healthz
+    autoDeployTrigger: commit
+    envVars:
+      # Bearer token for POST /api/inspect (generated automatically).
+      - key: INSPECTOR_KEY
+        generateValue: true
+      # Limited key entered in the Outlook task pane. Keep it different from
+      # INSPECTOR_KEY so the add-in cannot access admin-only operations.
+      - key: OUTLOOK_ADDIN_KEY
+        sync: false
+      # Limited key entered in the Gmail add-on's settings card. Keep it
+      # different from INSPECTOR_KEY and OUTLOOK_ADDIN_KEY.
+      - key: GMAIL_ADDIN_KEY
+        sync: false
+      # Password for the /admin review page (you'll be prompted for it).
+      - key: ADMIN_PASSWORD
+        sync: false
+      # Mail Activity: salt for hashing mailbox addresses (generated automatically).
+      - key: EVENT_SALT
+        generateValue: true
+      - key: EVENT_RETENTION_DAYS
+        value: "30"
+      - key: STORE_SUBJECTS
+        value: "1"
+      # Optional threat sources — without them, links stay VERIFICATION_REQUIRED.
+      - key: URLHAUS_API_KEY
+        sync: false
+      - key: GOOGLE_SAFE_BROWSING_API_KEY
+        sync: false
+      # Optional — enables Gemini semantic analysis of messages.
+      - key: GEMINI_API_KEY
+        sync: false
+      # Render terminates TLS at its proxy, so trust one hop for real client IPs
+      # (rate limiting + the HTTPS-only guard depend on this).
+      - key: TRUST_PROXY
+        value: "1"
+      # SQLite lives on the mounted disk.
+      - key: DB_PATH
+        value: /data/gateway.db
+      # GATEWAY_URL is not set: it falls back to RENDER_EXTERNAL_URL automatically.
+    disk:
+      name: data
+      mountPath: /data
+      sizeGB: 1
