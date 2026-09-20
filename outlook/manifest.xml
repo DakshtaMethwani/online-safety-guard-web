@@ -7,7 +7,7 @@
   and sends its links to the existing /api/inspect + /api/events endpoints, then
   shows the verdict and reports the event to the /admin/mail dashboard.
 
-  Every URL below is under https://safety-guard-web-ncra.onrender.com/outlook/.
+  Every URL below is under https://online-safety-guard-web.onrender.com/outlook/.
   The served task pane files live in the repo's outlook/ directory and are
   served with add-in-only headers; this manifest file itself is NOT served.
 -->
@@ -30,14 +30,14 @@
 
   <Description DefaultValue="AI-powered email safety analysis using agentic investigation."/>
 
-  <IconUrl DefaultValue="https://safety-guard-web-ncra.onrender.com/outlook/icon-64.png"/>
+  <IconUrl DefaultValue="https://online-safety-guard-web.onrender.com/outlook/icon-64.png"/>
 
-  <HighResolutionIconUrl DefaultValue="https://safety-guard-web-ncra.onrender.com/outlook/icon-128.png"/>
+  <HighResolutionIconUrl DefaultValue="https://online-safety-guard-web.onrender.com/outlook/icon-128.png"/>
 
-  <SupportUrl DefaultValue="https://safety-guard-web-ncra.onrender.com/outlook/support.html"/>
+  <SupportUrl DefaultValue="https://online-safety-guard-web.onrender.com/outlook/support.html"/>
 
   <AppDomains>
-    <AppDomain>https://safety-guard-web-ncra.onrender.com</AppDomain>
+    <AppDomain>https://online-safety-guard-web.onrender.com</AppDomain>
   </AppDomains>
 
   <Hosts>
@@ -53,7 +53,7 @@
   <FormSettings>
     <Form xsi:type="ItemRead">
       <DesktopSettings>
-        <SourceLocation DefaultValue="https://safety-guard-web-ncra.onrender.com/outlook/taskpane.html"/>
+        <SourceLocation DefaultValue="https://online-safety-guard-web.onrender.com/outlook/taskpane.html"/>
         <RequestedHeight>450</RequestedHeight>
       </DesktopSettings>
     </Form>
@@ -131,15 +131,15 @@
 
         <bt:Image
           id="Icon16"
-          DefaultValue="https://safety-guard-web-ncra.onrender.com/outlook/icon-16.png"/>
+          DefaultValue="https://online-safety-guard-web.onrender.com/outlook/icon-16.png"/>
 
         <bt:Image
           id="Icon32"
-          DefaultValue="https://safety-guard-web-ncra.onrender.com/outlook/icon-32.png"/>
+          DefaultValue="https://online-safety-guard-web.onrender.com/outlook/icon-32.png"/>
 
         <bt:Image
           id="Icon80"
-          DefaultValue="https://safety-guard-web-ncra.onrender.com/outlook/icon-80.png"/>
+          DefaultValue="https://online-safety-guard-web.onrender.com/outlook/icon-80.png"/>
 
       </bt:Images>
 
@@ -147,11 +147,11 @@
 
         <bt:Url
           id="Commands.Url"
-          DefaultValue="https://safety-guard-web-ncra.onrender.com/outlook/commands.html"/>
+          DefaultValue="https://online-safety-guard-web.onrender.com/outlook/commands.html"/>
 
         <bt:Url
           id="Taskpane.Url"
-          DefaultValue="https://safety-guard-web-ncra.onrender.com/outlook/taskpane.html"/>
+          DefaultValue="https://online-safety-guard-web.onrender.com/outlook/taskpane.html"/>
 
       </bt:Urls>
 

@@ -488,9 +488,7 @@
     if (els.retryFail) els.retryFail.addEventListener("click", runAnalysis);
     if (els.openCheck) {
       els.openCheck.addEventListener("click", function () {
-        var url = state.gatewayUrl;
-        if (!url && state.ref) url = location.origin + "/go/" + encodeURIComponent(state.ref);
-        if (url) window.open(url, "_blank", "noopener,noreferrer");
+        window.open("https://online-safety-guard-web.onrender.com/", "_blank", "noopener,noreferrer");
       });
     }
   }

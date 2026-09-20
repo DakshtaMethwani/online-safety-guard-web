@@ -12,7 +12,7 @@
  */
 
 // EDIT THIS after you deploy the server (e.g. to Render).
-var BASE_URL = 'https://safety-guard-web-ncra.onrender.com';
+var BASE_URL = 'https://online-safety-guard-web.onrender.com';
 
 var KEY_PROPERTY = 'SG_ADDIN_KEY';
 var POLL_INTERVAL_MS = 2000;
@@ -215,11 +215,9 @@ function resultCard_(verdict, reason, links, gatewayUrl, msgResult) {
   }
 
   var buttons = CardService.newButtonSet();
-  if (gatewayUrl) {
-    buttons.addButton(CardService.newTextButton()
-      .setText('Open safety check page')
-      .setOpenLink(CardService.newOpenLink().setUrl(gatewayUrl)));
-  }
+  buttons.addButton(CardService.newTextButton()
+    .setText('Open safety check page')
+    .setOpenLink(CardService.newOpenLink().setUrl('https://online-safety-guard-web.onrender.com/')));
   buttons.addButton(CardService.newTextButton()
     .setText('Re-check')
     .setOnClickAction(CardService.newAction().setFunctionName('reCheckAction')));

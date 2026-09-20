@@ -12,7 +12,7 @@
   "addOns": {
     "common": {
       "name": "Online Safety Guard",
-      "logoUrl": "https://safety-guard-web-ncra.onrender.com/outlook/icon-128.png",
+      "logoUrl": "https://online-safety-guard-web.onrender.com/outlook/icon-128.png",
       "layoutProperties": {
         "primaryColor": "#0b3d2e",
         "secondaryColor": "#8CFF9E"
